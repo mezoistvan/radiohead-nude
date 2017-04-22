@@ -1,2 +1,2 @@
-# how-to-disappear-completely-and-never-be-found-again
-Generative music with Tone.js. In C# minor because of Radiohead's Nude.
+# nude
+Generative music with Tone.js in C# minor, vocals from the song (Nude)[https://www.youtube.com/watch?v=sHbHZOcpCZ0] by Radiohead.
