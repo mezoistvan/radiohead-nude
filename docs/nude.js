@@ -145,6 +145,16 @@ echo2.connect( reverb2 );
 
 reverb2.connect( comp );
 
+// VOICE
+
+var player = new Tone.Player( {
+    'url' : './Voice.mp3',
+    'loop' : true
+} );
+player.start();
+
+player.connect( comp );
+
 comp.toMaster();
 
 Tone.Transport.bpm.value = 10;
