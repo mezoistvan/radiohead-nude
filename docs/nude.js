@@ -150,9 +150,10 @@ reverb2.connect( comp );
 var player = new Tone.Player( {
     'url' : './Voice.mp3',
     'loop' : true
-} ).start();
+} );
 
 player.connect( comp );
+player.autostart = true;
 
 comp.toMaster();
 
