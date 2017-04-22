@@ -24,7 +24,7 @@ var basicSynth1 = new Tone.AMSynth  ( {
 //         'sustain' : 0.2,
 //         'release' : 0.9,
 //     }
-// } )
+// } ).toMaster();
 
 // var basicSynth3 = new Tone.AMSynth  ( {
 //     'oscillator' : {
@@ -37,7 +37,7 @@ var basicSynth1 = new Tone.AMSynth  ( {
 //         'sustain' : 0.2,
 //         'release' : 0.9,
 //     }
-// } )
+// } ).toMaster();
 
 // var basicSynth4 = new Tone.Synth( {
 //     'oscillator' : {
@@ -50,7 +50,7 @@ var basicSynth1 = new Tone.AMSynth  ( {
 //         'sustain' : 0.2,
 //         'release' : 0.9,
 //     }
-// } )
+// } ).toMaster();
 
 // PATTERNS
 // NO BUTTER NOTES !!!
