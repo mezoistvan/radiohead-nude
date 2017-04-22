@@ -1,6 +1,6 @@
 // INSTRUMENTS
 
-var basicSynth1 = new Tone.Synth( {
+var sineSynthLeft = new Tone.Synth( {
     'oscillator' : {
         'type' : 'sine'
     },
@@ -12,7 +12,7 @@ var basicSynth1 = new Tone.Synth( {
     }
 } );
 
-var basicSynth2 = new Tone.Synth( {
+var triangleSynthLeft = new Tone.Synth( {
     'oscillator' : {
         'type' : 'triangle'
     },
@@ -24,7 +24,19 @@ var basicSynth2 = new Tone.Synth( {
     }
 } );
 
-var basicSynth3 = new Tone.Synth  ( {
+var squareSynthLeft = new Tone.Synth( {
+    'oscillator' : {
+        'type' : 'sawtooth'
+    },
+    'envelope' : {
+        'attack' : 1,
+        'decay' : 0.0,
+        'sustain' : 1,
+        'release' : 1,
+    }
+} );
+
+var sineSynthRight = new Tone.Synth( {
     'oscillator' : {
         'type' : 'sine'
     },
@@ -36,9 +48,21 @@ var basicSynth3 = new Tone.Synth  ( {
     }
 } );
 
-var basicSynth4 = new Tone.Synth( {
+var triangleSynthRight = new Tone.Synth( {
     'oscillator' : {
         'type' : 'triangle'
+    },
+    'envelope' : {
+        'attack' : 1,
+        'decay' : 0.0,
+        'sustain' : 1,
+        'release' : 1,
+    }
+} );
+
+var squareSynthRight = new Tone.Synth( {
+    'oscillator' : {
+        'type' : 'sawtooth'
     },
     'envelope' : {
         'attack' : 1,
@@ -49,43 +73,55 @@ var basicSynth4 = new Tone.Synth( {
 } );
 
 // PATTERNS
-// NO BUTTER NOTES !!!
 
-var pattern1 = new Tone.Pattern( function( time, note ) {
-    basicSynth1.triggerAttackRelease( note, '4n', time );
-}, [ 'C#4', 'E#4', 'G#4', 'A#4' ] );
+var bassPattern1 = new Tone.Pattern( function ( time, note ) {
+    sineSynthLeft.triggerAttackRelease( note, '1n', time );
+}, [ 'C#2', 'E2', 'G#2', 'B2' ] );
 
-var pattern2 = new Tone.Pattern( function( time, note ) {
-    basicSynth2.triggerAttackRelease( note, '3n', time );
-}, [ 'C#3', 'E#3', 'G#3', 'A#3', 'B#3' ] );
+var bassPattern2 = new Tone.Pattern( function ( time, note ) {
+    squareSynthRight.triggerAttackRelease( note, '1n', time );
+}, [ 'C#2', 'E2', 'G#2', 'B2' ] );
 
-var pattern3 = new Tone.Pattern( function( time, note ) {
-    basicSynth3.triggerAttackRelease( note, '2n', time );
-}, [ 'C#2', 'E#2', 'G#2', 'A#2', 'B#2', 'C#3' ] );
+var middleChords1 = new Tone.Pattern( function ( time, note ) {
+    triangleSynthLeft.triggerAttackRelease( note, '1n', time );
+}, [ 'E3', 'G#3', 'A3', 'B3' ] );
 
-var pattern4 = new Tone.Pattern( function( time, note ) {
-    basicSynth4.triggerAttackRelease( note, '2n', time );
-}, [ 'C#3', 'E#2', 'G#3', 'A#3', 'G#4', 'A#4', 'E#3' ] );
+var middleChords2 = new Tone.Pattern( function ( time, note ) {
+    sineSynthRight.triggerAttackRelease( note, '1n', time );
+}, [ 'E4', 'G#4', 'A4', 'B4' ] );
 
-pattern1.pattern = 'random';
-pattern1.humanize = true;
-pattern1.playbackRate.value = 3;
-pattern1.start(0);
+// NO BUTTER NOTES (not much at least)
+var color1 = new Tone.Pattern( function ( time, note ) {
+    triangleSynthRight.triggerAttackRelease( note, '1n', time );
+}, [ 'G#4', 'D#4', 'F#4', 'A4', 'D#5', 'F#5', 'A5' ] );
 
-pattern2.pattern = 'random';
-pattern2.humanize = true;
-pattern1.playbackRate.value = 2;
-pattern2.start(0);
+var color2 = new Tone.Pattern( function ( time, note ) {
+    squareSynthLeft.triggerAttackRelease( note, '1n', time );
+}, [ 'G#4', 'D#4', 'F#4', 'A4', 'D#5', 'F#5', 'A5' ] );
 
-pattern3.pattern = 'random';
-pattern3.humanize = true;
-pattern1.playbackRate.value = 6;
-pattern3.start(0);
+bassPattern1.pattern = 'random';
+bassPattern1.humanize = true;
+bassPattern1.start(0);
 
-pattern4.pattern = 'random';
-pattern4.humanize = true;
-pattern1.playbackRate.value = 10;
-pattern4.start(0);
+bassPattern2.pattern = 'random';
+bassPattern2.humanize = true;
+bassPattern2.start(0);
+
+middleChords1.pattern = 'random';
+middleChords1.humanize = true;
+middleChords1.start(0);
+
+middleChords2.pattern = 'random';
+middleChords2.humanize = true;
+middleChords2.start(0);
+
+color1.pattern = 'random';
+color1.humanize = true;
+color1.start(0);
+
+color2.pattern = 'random';
+color2.humanize = true;
+color2.start(0);
 
 var leftPanner = new Tone.Panner( -0.5 );
 var rightPanner = new Tone.Panner( 0.5 );
@@ -95,10 +131,12 @@ reverb2.dampening.value = 200;
 reverb2.roomSize .value = 0.4;
 var comp = new Tone.Compressor( -2, 3 );
 
-basicSynth1.connect( leftPanner );
-basicSynth2.connect( rightPanner );
-basicSynth3.connect( rightPanner );
-basicSynth4.connect( leftPanner );
+sineSynthLeft.connect( leftPanner );
+triangleSynthLeft.connect( leftPanner );
+squareSynthLeft.connect( leftPanner );
+sineSynthRight.connect( rightPanner );
+triangleSynthRight.connect( rightPanner );
+squareSynthRight.connect( rightPanner );
 
 leftPanner.connect( echo2 );
 rightPanner.connect( echo2 );
