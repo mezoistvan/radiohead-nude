@@ -157,5 +157,6 @@ player.autostart = true;
 
 comp.toMaster();
 
+// original bpm: 63, in 6/8 timing
 Tone.Transport.bpm.value = 10;
 Tone.Transport.start();
