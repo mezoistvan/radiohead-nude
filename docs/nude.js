@@ -152,10 +152,16 @@ var player = new Tone.Player( {
     'loop' : true
 } );
 
-player.connect( comp );
+var voiceVolume = new Tone.Volume(12);
+
+player.connect( voiceVolume );
+voiceVolume.connect( comp );
 player.autostart = true;
 
-comp.toMaster();
+var masterVolume = new Tone.Volume(-12);
+
+comp.connect( masterVolume );
+masterVolume.toMaster();
 
 Tone.Transport.bpm.value = 10;
 Tone.Transport.start();
