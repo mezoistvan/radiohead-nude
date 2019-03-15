@@ -50,6 +50,9 @@
         font-weight: bold;
         margin-right: 7px;
     }
+    h2 {
+        color: white;
+    }
     a {
         text-decoration: none;
         color: white;
@@ -62,15 +65,30 @@
             width:20%;
         }
     }
-
+    #start {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: calc(50% - 100px);
+        left: calc(50% - 100px);
+        cursor: pointer;
+    }
 </style>
 
     <script src="https://unpkg.com/tone@13.4.9/build/Tone.js"></script>
-    <!--<script src="https://mezoistvan.github.io/nude/nude.js"></script>-->
     <script src="nude.js"></script>
 </head>
 <body>
     <div id="bg"><img src="BKG.png" id="bgi" /></div>
+
+    <div id="start" onclick="startAndHide()">
+        <h1>nude</h1>
+        <br>
+        <h2>play</h2>
+    </div>
 
     <script>
         var s=false;

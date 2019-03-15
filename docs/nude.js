@@ -158,11 +158,16 @@ player.connect( voiceVolume );
 voiceVolume.connect( comp );
 player.autostart = true;
 
-var masterVolume = new Tone.Volume(-12);
+var masterVolume = new Tone.Volume(-18);
 
 comp.connect( masterVolume );
 masterVolume.toMaster();
 
 // original bpm: 63, in 6/8 timing
 Tone.Transport.bpm.value = 10;
-Tone.Transport.start();
+
+function startAndHide() {
+    Tone.Transport.start();
+
+    document.getElementById('start').style.display = 'none';
+}
